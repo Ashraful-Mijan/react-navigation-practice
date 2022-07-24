@@ -18,13 +18,15 @@ import {
 import {Provider} from 'react-redux';
 import Navigation from './navigation';
 import DrawerNavigation from './navigation/drawer-navigation';
+import Flow from './navigation/flow';
 import store from './store';
 
 const App = () => {
   return (
     <Provider store={store}>
       {/* <Navigation /> */}
-      <DrawerNavigation/>
+      {/* <DrawerNavigation/> */}
+      <Flow />
       <StatusBar />
     </Provider>
   );

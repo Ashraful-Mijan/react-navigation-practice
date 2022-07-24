@@ -10,7 +10,7 @@ import {
 } from '@react-navigation/drawer';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
-import {View, Button} from 'react-native';
+import {View, Button, ImageBackground, Image} from 'react-native';
 import Text from '../src/components/text/text';
 
 // components
@@ -21,6 +21,7 @@ const Main = () => {
     </View>
   );
 };
+
 const About = () => {
   return (
     <View>
@@ -28,6 +29,35 @@ const About = () => {
     </View>
   );
 };
+
+// custom drawer content
+function CustomDrawerContent(props) {
+  return (
+    <View style={{flex: 1}}>
+      <DrawerContentScrollView
+        {...props}
+        contentContainerStyle={{backgroundColor: '#8200d6', paddingTop: 0}}>
+        <ImageBackground
+          source={{
+            uri: 'https://images.pexels.com/photos/1237119/pexels-photo-1237119.jpeg?cs=srgb&dl=pexels-jonathan-petersson-1237119.jpg&fm=jpg',
+          }}
+          style={{padding: 20}}>
+          <Image
+            source={{
+              uri: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80',
+            }}
+            style={{height: 80, width: 80, borderRadius: 40, marginBottom: 10}}
+          />
+          <Text preset="h3">John Due</Text>
+        </ImageBackground>
+        <DrawerItemList {...props} />
+      </DrawerContentScrollView>
+      <View>
+        <Text style={{color: 'black'}}>Our custom text</Text>
+      </View>
+    </View>
+  );
+}
 
 const HomePageStack = createNativeStackNavigator();
 
@@ -57,7 +87,6 @@ export default function DrawerNavigation() {
         screenOptions={{
           headerStyle: {backgroundColor: 'orange'},
           drawerStyle: {backgroundColor: '#c6cbef'},
-          swipeEnabled: false,
           header: ({navigation, route, options, layout}) => {
             return (
               <View
@@ -77,7 +106,8 @@ export default function DrawerNavigation() {
               </View>
             );
           },
-        }}>
+        }}
+        drawerContent={props => <CustomDrawerContent {...props} />}>
         <Drawer.Screen
           options={{title: 'Home'}}
           name="mainTab"
