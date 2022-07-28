@@ -39,7 +39,7 @@ const AppScreens = () => {
 };
 
 export default function Flow() {
-  const isLogin = false;
+  const isLogin = true;
   return (
     <NavigationContainer>
       {isLogin ? <AppScreens /> : <AuthScreens />}
